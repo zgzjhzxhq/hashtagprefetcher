@@ -7,10 +7,12 @@ api = tweepy.API(auth)
 
 i=1
 j=0
-f = open("GameOfThrones", "w")
+f = open("GameOfThrones_nu", "w")
 for tweet in tweepy.Cursor(api.search, q="#GameOfThrones -RT", rpp="100", show_user=True).items(1000):
+    f.write(str(j))
     f.write(tweet.text.encode('ascii', errors='backslashreplace'))
     f.write('\n')
+    j = j+1
 
 #while 1:
 #    public_tweets = api.search(q="#GameOfThrones -RT", rpp="100", page=i, show_user=True)
