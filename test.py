@@ -1,15 +1,16 @@
 import tweepy
 
-auth = tweepy.OAuthHandler("KPUUViRvSNxfvxAKjaekzkWlA", "mxgYzcFEYp5FN3ne99lYfMvlBglKrzBUi7aSSUx3CHNfe5QMBX")
-auth.set_access_token("2151109862-znfROOFGeSMhxSpQaB0In8jh0V1KijU9ytQpOpb","hkYLDR7Qz2dRRhMFoRF3D2soTADxIkXQTj0rBYGhTrQBl")
+auth = tweepy.OAuthHandler("ARaQIIKxF3GV7T2UNt7Wm3xuG", "omEkk45RACnrP3GL2TWUyrLpuMp4MlXy7bvIHCiU3hnIhV5abZ")
+auth.set_access_token("64687094-XedIf5AUHTsDpWY5i3lBs5x033KyArmvlpt9GkTFP","QQK7v0h63DCPJjHJPMwzoG2okBVuhkuGgnxNyruTpOSgu")
 
 api = tweepy.API(auth)
 
 i=1
 j=0
-f = open("GameOfThrones_nu", "w")
-for tweet in tweepy.Cursor(api.search, q="#GameOfThrones -RT", rpp="100", show_user=True).items(1000):
+f = open("TaylorSwift_nu", "w")
+for tweet in tweepy.Cursor(api.search, q="#TaylorSwift -RT", rpp="100", show_user=True).items(2000):
     f.write(str(j))
+    f.write('\t')
     f.write(tweet.text.encode('ascii', errors='backslashreplace'))
     f.write('\n')
     j = j+1
