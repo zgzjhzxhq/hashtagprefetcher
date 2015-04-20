@@ -7,8 +7,8 @@ api = tweepy.API(auth)
 
 i=1
 j=0
-f = open("TaylorSwift_nu", "w")
-for tweet in tweepy.Cursor(api.search, q="#TaylorSwift -RT", rpp="100", show_user=True).items(2000):
+f = open("Badgers", "w")
+for tweet in tweepy.Cursor(api.search, q="#Badgers -RT", rpp="100", show_user=True).items(1000):
     f.write(str(j))
     f.write('\t')
     f.write(tweet.text.encode('ascii', errors='backslashreplace'))
