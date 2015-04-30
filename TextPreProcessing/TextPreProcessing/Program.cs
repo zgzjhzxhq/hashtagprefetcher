@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace TextPreProcessing
 {
@@ -18,8 +19,10 @@ namespace TextPreProcessing
             StreamReader TextReader = new StreamReader(TextFile);
             TextReader.BaseStream.Seek(0, SeekOrigin.Begin);
 
-            string[] text = new string[1000];
-            for (int i = 0; i < 1000; i++)
+            int NumOfTweets = 1000;
+
+            string[] text = new string[NumOfTweets];
+            for (int i = 0; i < NumOfTweets; i++)
                 text[i] = TextReader.ReadLine();
 
 
@@ -39,9 +42,9 @@ namespace TextPreProcessing
             FreqDictReader.Close();
             FreqDictReader.Dispose();
 
-            int[] TotalNumWord = new int[1000];
+            int[] TotalNumWord = new int[NumOfTweets];
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < NumOfTweets; i++)
             {
                 // Remove http parts
                 if (text[i].IndexOf("http", 0) != -1)
@@ -84,6 +87,44 @@ namespace TextPreProcessing
             FeatureWriter.Flush();
             FeatureWriter.Close();
             FeatureFile.Close();
+
+            // Output 0-1 Matrix
+            FileStream Matrix01File = new FileStream("0-1Matrix.csv", FileMode.Create);
+            StreamWriter Matrix01Writer = new StreamWriter(Matrix01File);
+
+            for (int i = 0; i < NumOfTweets; i++)
+            {
+                foreach(var key in OurDict.Keys)
+                    if (text[i].IndexOf(key) != -1)
+                        Matrix01Writer.Write("1,");
+                    else
+                        Matrix01Writer.Write("0,");
+                Matrix01Writer.WriteLine("TBD");
+            }
+
+            Matrix01Writer.Flush();
+            Matrix01Writer.Close();
+            Matrix01File.Close();
+
+            // Output Freq Matrix
+            FileStream MatrixFreqFile = new FileStream("FreqMatrix.csv", FileMode.Create);
+            StreamWriter MatrixFreqWriter = new StreamWriter(MatrixFreqFile);
+
+            for (int i = 0; i < NumOfTweets; i++)
+            {
+                foreach (var key in OurDict.Keys)
+                {
+                    int count = 0;
+                    foreach (Match match in Regex.Matches(text[i], key))
+                        count++;
+                    MatrixFreqWriter.Write(count * 1.0 / TotalNumWord[i] + ",");
+                }
+                MatrixFreqWriter.WriteLine("TBD");
+            }
+
+            MatrixFreqWriter.Flush();
+            MatrixFreqWriter.Close();
+            MatrixFreqFile.Close();
         }
     }
 }
