@@ -11,7 +11,7 @@ namespace TextPreProcessing
     {
         static void Main(string[] args)
         {
-            string Title = "GameOfThrones";
+            string Title = "Tweets";
             
             // Load Text File
             FileStream TextFile = new FileStream(Title, FileMode.Open);
@@ -47,22 +47,10 @@ namespace TextPreProcessing
                 if (text[i].IndexOf("http", 0) != -1)
                     text[i] = text[i].Substring(0, text[i].IndexOf("http", 0));
 
-                // Remove #XXX parts
-                int j = 0;
-                while (j < text[i].Length)
-                {
+                // Remove # parts
+                for (int j = 0; j < text[i].Length; j++)
                     if (text[i][j] == '#')
-                    {
                         text[i] = text[i].Remove(j, 1).Insert(j, " ");
-                        j++;
-                        while(j < text[i].Length && text[i][j] != ' ')
-                        {
-                            text[i] = text[i].Remove(j, 1).Insert(j, " ");
-                            j++;
-                        }
-                    }
-                    j++;
-                }
                 
                 // Lowercase
                 text[i] = text[i].ToLower();
@@ -70,7 +58,7 @@ namespace TextPreProcessing
                 // Add every "non-frequent" word to the dictionary and Count the number of words in this text
                 string word = "";
                 int Num = 0;
-                for (j = 0; j < text[i].Length; j++)
+                for (int j = 0; j < text[i].Length; j++)
                     if (text[i][j] >= 'a' && text[i][j] <= 'z' || text[i][j] == '\'')
                         word = word + text[i][j];
                     else if (word != "")
@@ -88,7 +76,7 @@ namespace TextPreProcessing
             }
 
             // Output our Dictionary
-            FileStream FeatureFile = new FileStream("FeatureWordFor" + Title, FileMode.Create);
+            FileStream FeatureFile = new FileStream("FeatureWord", FileMode.Create);
             StreamWriter FeatureWriter = new StreamWriter(FeatureFile);
             FeatureWriter.WriteLine(OurDict.Count);
             foreach (var key in OurDict.Keys)

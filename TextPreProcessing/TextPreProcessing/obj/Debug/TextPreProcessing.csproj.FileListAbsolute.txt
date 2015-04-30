@@ -3,3 +3,8 @@ C:\Users\cwang\documents\visual studio 2013\Projects\TextPreProcessing\TextPrePr
 C:\Users\cwang\documents\visual studio 2013\Projects\TextPreProcessing\TextPreProcessing\obj\Debug\TextPreProcessing.pdb
 C:\Users\cwang\documents\visual studio 2013\Projects\TextPreProcessing\TextPreProcessing\bin\Debug\TextPreProcessing.exe
 C:\Users\cwang\documents\visual studio 2013\Projects\TextPreProcessing\TextPreProcessing\obj\Debug\TextPreProcessing.exe
+C:\Users\cwang\Documents\GitHub\hashtagprefetcher\TextPreProcessing\TextPreProcessing\obj\Debug\TextPreProcessing.exe
+C:\Users\cwang\Documents\GitHub\hashtagprefetcher\TextPreProcessing\TextPreProcessing\obj\Debug\TextPreProcessing.pdb
+C:\Users\cwang\Documents\GitHub\hashtagprefetcher\TextPreProcessing\TextPreProcessing\obj\Debug\TextPreProcessing.csprojResolveAssemblyReference.cache
+C:\Users\cwang\Documents\GitHub\hashtagprefetcher\TextPreProcessing\TextPreProcessing\bin\Debug\TextPreProcessing.exe
+C:\Users\cwang\Documents\GitHub\hashtagprefetcher\TextPreProcessing\TextPreProcessing\bin\Debug\TextPreProcessing.pdb
