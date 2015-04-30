@@ -20,6 +20,7 @@ namespace TextPreProcessing
             TextReader.BaseStream.Seek(0, SeekOrigin.Begin);
 
             int NumOfTweets = 1000;
+            int NumOfCatTweets = 1000;
 
             string[] text = new string[NumOfTweets];
             for (int i = 0; i < NumOfTweets; i++)
@@ -88,27 +89,12 @@ namespace TextPreProcessing
             FeatureWriter.Close();
             FeatureFile.Close();
 
-            // Output 0-1 Matrix
+            // Output 0-1 Matrix and Freq Matrix
             FileStream Matrix01File = new FileStream("0-1Matrix.csv", FileMode.Create);
             StreamWriter Matrix01Writer = new StreamWriter(Matrix01File);
-
-            for (int i = 0; i < NumOfTweets; i++)
-            {
-                foreach(var key in OurDict.Keys)
-                    if (text[i].IndexOf(key) != -1)
-                        Matrix01Writer.Write("1,");
-                    else
-                        Matrix01Writer.Write("0,");
-                Matrix01Writer.WriteLine("TBD");
-            }
-
-            Matrix01Writer.Flush();
-            Matrix01Writer.Close();
-            Matrix01File.Close();
-
-            // Output Freq Matrix
             FileStream MatrixFreqFile = new FileStream("FreqMatrix.csv", FileMode.Create);
             StreamWriter MatrixFreqWriter = new StreamWriter(MatrixFreqFile);
+            int label;
 
             for (int i = 0; i < NumOfTweets; i++)
             {
@@ -117,11 +103,20 @@ namespace TextPreProcessing
                     int count = 0;
                     foreach (Match match in Regex.Matches(text[i], key))
                         count++;
+                    if (count > 0)
+                        Matrix01Writer.Write("1,");
+                    else
+                        Matrix01Writer.Write("0,");
                     MatrixFreqWriter.Write(count * 1.0 / TotalNumWord[i] + ",");
                 }
-                MatrixFreqWriter.WriteLine("TBD");
+                label = i / NumOfCatTweets + 1;
+                MatrixFreqWriter.WriteLine(label);
+                Matrix01Writer.WriteLine(label);
             }
 
+            Matrix01Writer.Flush();
+            Matrix01Writer.Close();
+            Matrix01File.Close();
             MatrixFreqWriter.Flush();
             MatrixFreqWriter.Close();
             MatrixFreqFile.Close();
