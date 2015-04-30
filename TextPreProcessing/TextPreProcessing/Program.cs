@@ -19,7 +19,7 @@ namespace TextPreProcessing
             StreamReader TextReader = new StreamReader(TextFile);
             TextReader.BaseStream.Seek(0, SeekOrigin.Begin);
 
-            int NumOfTweets = 1000;
+            int NumOfTweets = 5000;
             int NumOfCatTweets = 1000;
 
             string[] text = new string[NumOfTweets];
