@@ -17,7 +17,7 @@ def parse_csv(file_name):
     return count
 
 def walk_dirs(root_dir):
-    acc_file = open('acc-data.dat', 'a')
+    acc_file = open('acc.dat', 'a')
 
     for dir_path in os.listdir(root_dir):
         if not os.path.isdir(dir_path):
