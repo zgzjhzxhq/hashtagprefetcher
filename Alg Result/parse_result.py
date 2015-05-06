@@ -22,8 +22,8 @@ def walk_dirs(root_dir):
     for dir_path in os.listdir(root_dir):
         if not os.path.isdir(dir_path):
             continue
-        if dir_path == "Random Forest":
-            continue
+#        if dir_path == "Random Forest":
+#            continue
 
         dir_name = dir_path
         print dir_name
