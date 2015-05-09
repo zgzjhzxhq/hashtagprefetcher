@@ -16,25 +16,22 @@ def parse_csv(file_name):
     print count
     return count
 
-def walk_dirs(root_dir):
-    acc_file = open('acc.dat', 'a')
-
-    for dir_path in os.listdir(root_dir):
+def walk_dirs(root_path):
+    acc_file = open('acc.dat', 'wb')
+    for dir_name in os.listdir(root_dir):
         if not os.path.isdir(dir_path):
             continue
-#        if dir_path == "Random Forest":
-#            continue
 
-        dir_name = dir_path
+        dir_path = root_path + '/' + dir_name
         print dir_name
         accuracies = []
         # Assume the dir name is the algorithm name
-        for file_path in os.listdir(dir_path):
-            file_name = file_path
+        for file_name in os.listdir(dir_path):
+            file_path = dir_path + '/' + file_name
             if not file_name.endswith(".csv"): 
                 continue
             print file_path
-            acc = parse_csv(root_dir+"/"+dir_path+"/"+file_path)
+            acc = parse_csv(file_path)
             accuracies.append(float(acc)/1000)
 
         mean = numpy.mean(accuracies)
@@ -44,4 +41,4 @@ def walk_dirs(root_dir):
     #return mean, std
 
 if __name__ == "__main__":
-    walk_dirs(".")
+    walk_dirs("../../")
