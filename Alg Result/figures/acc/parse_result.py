@@ -18,11 +18,14 @@ def parse_csv(file_name):
 
 def walk_dirs(root_path):
     acc_file = open('acc.dat', 'wb')
-    for dir_name in os.listdir(root_dir):
+    for dir_name in os.listdir(root_path):
+        dir_path = root_path + '/' + dir_name
+
         if not os.path.isdir(dir_path):
             continue
+        if dir_name.endswith('figures'):
+            continue
 
-        dir_path = root_path + '/' + dir_name
         print dir_name
         accuracies = []
         # Assume the dir name is the algorithm name
@@ -30,7 +33,7 @@ def walk_dirs(root_path):
             file_path = dir_path + '/' + file_name
             if not file_name.endswith(".csv"): 
                 continue
-            print file_path
+            print file_name
             acc = parse_csv(file_path)
             accuracies.append(float(acc)/1000)
 
