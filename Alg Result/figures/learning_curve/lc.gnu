@@ -1,11 +1,12 @@
 set term post eps enh color ", 46" size 12, 8 #eps color enh font ",30"
 #set terminal pdf  enhanced color font ",30" size 3.5,2.62
-set key outside horizontal right bottom spacing 1 font ",46" #box ls -1 lc rgb "black"
+set key outside horizontal right top spacing 1 font ",46" #box ls -1 lc rgb "black"
 set datafile separator ","
 set key autotitle columnhead
 set output 'lc.eps'
 
 set ylabel "Prediction Accuracy" offset 2
+set xlabel "Size of sample training set" offset 2
 set xtics font ",46" #rotate by -45
 #set ytics font ",34"
 #set yrange [0:1.0]
