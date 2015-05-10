@@ -6,7 +6,7 @@ set datafile separator ","
 set output 'label.eps'
 
 set ylabel "Prediction Accuracy" offset 2
-set xtics 0.2 font ",30" #rotate by -45
+set xtics 0.2 font ",32" #rotate by -45
 set ytics font ",34"
 set yrange [0.75:1.05]
 
