@@ -6,7 +6,7 @@ set key autotitle columnhead
 set output 'lc.eps'
 
 set ylabel "Prediction Accuracy" offset 2
-set xlabel "Size of sample training set" offset 2
+set xlabel "Size of Sample Training Set" offset 2
 set xtics font ",46" #rotate by -45
 #set ytics font ",34"
 #set yrange [0:1.0]
